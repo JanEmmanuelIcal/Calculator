@@ -22,12 +22,14 @@ body{
     color:#0f172a;
 }
 
-.page{width:100%;max-width:420px}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:22px;align-items:start;width:100%;max-width:920px}
+
+.page{width:100%}
 .card{
     background:var(--card-bg);
-    border-radius:14px;
+    border-radius:12px;
     padding:18px;
-    box-shadow:0 10px 30px rgba(13,16,32,0.08);
+    box-shadow:0 8px 28px rgba(13,16,32,0.06);
     backdrop-filter: blur(6px) saturate(120%);
     border:1px solid rgba(15,23,42,0.06);
 }
@@ -82,6 +84,37 @@ body{
 
 .card-footer{margin-top:10px;text-align:center}
 .muted{color:var(--muted);font-size:0.8rem}
+
+/* Sidebar (resume-like) */
+.sidebar{
+    display:flex;flex-direction:column;gap:18px;padding:18px;border-radius:12px;align-self:start;
+    background:linear-gradient(180deg,rgba(255,255,255,0.65),rgba(250,250,255,0.6));
+    border:1px solid rgba(15,23,42,0.04);
+}
+.brand{display:flex;gap:12px;align-items:center}
+.avatar{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.1rem;box-shadow:0 6px 18px rgba(79,70,229,0.12)}
+.brand-info .name{font-weight:700}
+.brand-info .role{font-size:0.85rem;color:var(--muted);margin-top:4px}
+.about{font-size:0.92rem;color:#0b1220}
+.about p{margin:0 0 8px 0}
+.about ul{margin:0;padding-left:18px}
+.sidebar-footer{font-size:0.8rem}
+
+/* History panel */
+.history{margin-top:16px;padding:14px}
+.history-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.history-header h2{margin:0;font-size:0.98rem}
+.history-list{max-height:220px;overflow:auto;padding-right:6px}
+.history-item{display:flex;justify-content:space-between;gap:14px;padding:8px;border-radius:8px;margin-bottom:8px;background:rgba(11,15,30,0.03);cursor:pointer}
+.history-item .expr{color:#0b1220}
+.history-item .res{color:var(--muted);font-weight:600}
+.btn.small{padding:6px 10px;font-size:0.8rem;border-radius:8px}
+
+@media (max-width:900px){
+    .layout{grid-template-columns:1fr;max-width:420px}
+    .sidebar{order:2}
+    .history{order:3}
+}
 
 @media (max-width:420px){
     .page{padding:0 6px}

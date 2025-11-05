@@ -8,43 +8,54 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <main class="page">
-            <section class="card calculator" aria-label="Calculator">
-                <header class="card-header">
-                    <h1 class="title">Calculator</h1>
-                </header>
+            <main class="page">
+                <section class="card calculator" aria-label="Calculator">
+                    <header class="card-header">
+                        <h1 class="title">Calculator</h1>
+                    </header>
 
-                <div class="display" id="display" role="status" aria-live="polite">0</div>
+                    <div class="display" id="display" role="status" aria-live="polite">0</div>
 
-                <div class="buttons" role="group" aria-label="calculator buttons">
-                    <button class="btn control" data-action="clear" aria-label="clear">C</button>
-                    <button class="btn control" data-action="percent" aria-label="percent">%</button>
-                    <button class="btn control" data-action="delete" aria-label="delete">DEL</button>
-                    <button class="btn operator" data-value="/" aria-label="divide">÷</button>
+                    <div class="buttons" role="group" aria-label="calculator buttons">
+                        <button class="btn control" data-action="clear" aria-label="clear">C</button>
+                        <button class="btn control" data-action="percent" aria-label="percent">%</button>
+                        <button class="btn control" data-action="delete" aria-label="delete">DEL</button>
+                        <button class="btn operator" data-value="/" aria-label="divide">÷</button>
 
-                    <button class="btn" data-value="7">7</button>
-                    <button class="btn" data-value="8">8</button>
-                    <button class="btn" data-value="9">9</button>
-                    <button class="btn operator" data-value="*">×</button>
+                        <button class="btn" data-value="7">7</button>
+                        <button class="btn" data-value="8">8</button>
+                        <button class="btn" data-value="9">9</button>
+                        <button class="btn operator" data-value="*">×</button>
 
-                    <button class="btn" data-value="4">4</button>
-                    <button class="btn" data-value="5">5</button>
-                    <button class="btn" data-value="6">6</button>
-                    <button class="btn operator" data-value="-">−</button>
+                        <button class="btn" data-value="4">4</button>
+                        <button class="btn" data-value="5">5</button>
+                        <button class="btn" data-value="6">6</button>
+                        <button class="btn operator" data-value="-">−</button>
 
-                    <button class="btn" data-value="1">1</button>
-                    <button class="btn" data-value="2">2</button>
-                    <button class="btn" data-value="3">3</button>
-                    <button class="btn operator" data-value="+">+</button>
+                        <button class="btn" data-value="1">1</button>
+                        <button class="btn" data-value="2">2</button>
+                        <button class="btn" data-value="3">3</button>
+                        <button class="btn operator" data-value="+">+</button>
 
-                    <button class="btn btn-zero" data-value="0">0</button>
-                    <button class="btn" data-value=".">.</button>
-                    <button class="btn equals" data-action="equals" aria-label="equals">=</button>
-                </div>
+                        <button class="btn btn-zero" data-value="0">0</button>
+                        <button class="btn" data-value=".">.</button>
+                        <button class="btn equals" data-action="equals" aria-label="equals">=</button>
+                    </div>
 
-                
-            </section>
-        </main>
+                    
+                </section>
+
+                <aside class="history card" aria-label="Calculation history">
+                    <div class="history-header">
+                        <h2>History</h2>
+                        <button class="btn small" id="clear-history">Clear</button>
+                    </div>
+                    <div id="history-list" class="history-list">
+                        <div class="history-empty muted">No calculations yet</div>
+                    </div>
+                </aside>
+            </main>
+        </div>
 
         <script src="script.js"></script>
     </body>

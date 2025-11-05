@@ -2,6 +2,59 @@
 const displayEl = document.getElementById('display');
 
 let expression = '';
+let history = [];
+
+const HISTORY_KEY = 'calc_history_v1';
+
+function loadHistory(){
+    try{
+        const raw = localStorage.getItem(HISTORY_KEY);
+        history = raw ? JSON.parse(raw) : [];
+    }catch{ history = [] }
+    renderHistory();
+}
+
+function saveHistory(){
+    try{ localStorage.setItem(HISTORY_KEY, JSON.stringify(history)); }catch{}
+}
+
+function renderHistory(){
+    const list = document.getElementById('history-list');
+    if(!list) return;
+    list.innerHTML = '';
+    if(history.length === 0){
+        const empty = document.createElement('div');
+        empty.className = 'history-empty muted';
+        empty.innerText = 'No calculations yet';
+        list.appendChild(empty);
+        return;
+    }
+    history.slice().reverse().forEach(item => {
+        const el = document.createElement('div');
+        el.className = 'history-item';
+        el.innerHTML = `<div class="expr">${item.expr}</div><div class="res">${item.result}</div>`;
+        el.addEventListener('click', ()=>{
+            expression = String(item.result);
+            updateDisplay();
+        });
+        list.appendChild(el);
+    });
+}
+
+function pushHistory(expr, result){
+    if(!expr) return;
+    history.push({expr, result});
+    // cap history length
+    if(history.length > 200) history.shift();
+    saveHistory();
+    renderHistory();
+}
+
+function clearHistory(){
+    history = [];
+    saveHistory();
+    renderHistory();
+}
 
 function updateDisplay() {
     displayEl.innerText = expression === '' ? '0' : expression;
@@ -88,12 +141,14 @@ function calculateResult() {
         const safe = sanitizeExpression(expression);
         // evaluate using Function for slightly safer eval behavior
         // wrap in parentheses to allow unary leading expressions
+        const prev = expression;
         const result = Function('"use strict"; return (' + safe + ')')();
         if (typeof result === 'number' && isFinite(result)) {
             // trim floating point artifacts
             const rounded = Math.round((result + Number.EPSILON) * 1e10) / 1e10;
             expression = String(rounded);
             updateDisplay();
+            pushHistory(prev, expression);
         } else {
             throw new Error('Math error');
         }
@@ -156,3 +211,8 @@ document.addEventListener('keydown', (e) => {
 
 // init
 updateDisplay();
+loadHistory();
+
+// wire clear history button
+const clearBtn = document.getElementById('clear-history');
+if(clearBtn) clearBtn.addEventListener('click', clearHistory);
