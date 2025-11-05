@@ -1,6 +1,7 @@
 # Calculator
 
 This is a small responsive calculator (HTML/CSS/JS).
+It has a futuristic technological design.
 
 Features:
 - Modern, resume-like card design
@@ -12,4 +13,4 @@ Features:
 
 Open `index.html` in your browser to use it.
 
-If you want adjustments to colors, font, or extra functions (memory, parentheses UI), tell me and I can add them.
+
